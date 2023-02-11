@@ -2,7 +2,7 @@
 <head>
 
 <!--
-THEME 01: CORAL by snake (https://github.com/suneteri)
+THEME #00: OAK by SNAKE (PLAYMOAR.NEOCITIES.ORG)
 ---
 CREATIVE COMMONS ZERO (PUBLIC DOMAIN DEDICATION)
 creativecommons.org/publicdomain/zero/1.0
@@ -10,24 +10,20 @@ creativecommons.org/publicdomain/zero/1.0
 no.js photosets by annasthms.tumblr.com & egg.design
 -->
 
-<title>{Title}</title>
+<title>{text:title}</title>
 <meta charset="utf-8">
-<link rel="shortcut icon" href="{image:favicon}">
+<link rel="shortcut icon" href="{Favicon}">
 <link rel="alternate" type="application/rss+xml" href="{RSS}">
 <link href="https://cdn.jsdelivr.net/gh/suneteri/venom/venom.css" rel="stylesheet">
 <link href="https://api.fonts.coollabs.io/css?family={text:font}" rel="stylesheet">
 <!--image options-->
-<meta name="image:favicon" content=""/>
 <meta name="image:bg" content=""/>
-<meta name="image:avi" content=""/>
+<meta name="image:sidebar" content=""/>
 <!--color options-->
 <meta name="color:bg" content="#3b627e"/>
-<meta name="color:fg" content="#eee"/>
-<meta name="color:borders" content="#000"/>
 <meta name="color:text" content="#111"/>
-<meta name="color:link bg" content="#FFFFCC"/>
-<!--boolean options-->
-<meta name="if:avi bg"/>
+<meta name="color:link" content="#111"/>
+<meta name="color:link hover" content="#111"/>
 <!--selection options-->
 <meta name="select:bg size" content="auto"/>
 <meta name="select:bg size" content="cover"/>
@@ -35,19 +31,18 @@ no.js photosets by annasthms.tumblr.com & egg.design
 <meta name="select:bg repeat" content="repeat"/>
 <meta name="select:bg repeat" content="no-repeat"/>
 <meta name="select:bg repeat" content="round"/>
-<meta name="select:sidebar align" content="left"/>
-<meta name="select:sidebar align" content="right"/>
-<meta name="select:sidebar align" content="center"/>
-<meta name="select:sidebar align" content="justify"/>
-<meta name="select:desc align" content="left"/>
-<meta name="select:desc align" content="right"/>
-<meta name="select:desc align" content="center"/>
-<meta name="select:desc align" content="justify"/>
 <!--text options-->
 <meta name="text:font" content="Arial"/>
-<meta name="text:font size" content="12px"/>
+<meta name="text:font size" content="1rem"/>
 <meta name="text:avi width" content="auto"/>
+<meta name="text:title" content="title"/>
 <meta name="text:desc" content="desc"/>
+<meta name="text:link 1 name" content=""/>
+<meta name="text:link 1 url" content=""/>
+<meta name="text:link 2 name" content=""/>
+<meta name="text:link 2 url" content=""/>
+<meta name="text:link 3 name" content=""/>
+<meta name="text:link 3 url" content=""/>
 
 <!--jquery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -83,114 +78,71 @@ Tumblr.Lightbox.init(data, getIndex(elem) + 1);
 <style type="text/css">
 
 /* basics ### */
-
 body {
-font-family:{text:font},sans-serif;
+font-family:'{text:font}';
 font-size:{text:font size};
-line-height:22px;
+line-height:1.5;
 color:{color:text};
-word-wrap:break-word;
-background:url('{image:bg}') {color:bg};
+background:{color:bg};
+background-image:url('{image:bg}');
 background-size:{select:bg size};
 background-repeat:{select:bg repeat};
 background-attachment:fixed;
 background-position:center; }
 
-blockquote { padding-left:1rem; margin-left:0.5rem; border-left:3px solid {color:text}; }
-blockquote.npf_indented { margin-left:0.5rem; }
+a { color:{color:link}; }
+a:hover { color:{color:link hover}; }
 
-a:hover { background-color:{color:link bg}; }
+/* main container ### */
+main { margin:auto; width:500px; }
 
-/* main container */
-
-main { width:700px; margin:150px auto; }
-
-/* sidebar ### */
-
-aside { position:fixed; margin-left:-150px; width:250px; }
-
-#sidebar {
-padding:1.25rem;
-text-align:{select:sidebar align};
-background:{color:fg};
-border:1px solid {color:borders}; }
-
-#sidebar img {
-margin:-48px 0 0 0;
-width:{text:avi width};
-max-width:100%;
-{block:ifAviBG}
-  background:{color:fg};
-  border:1px solid {color:borders};
-{/block:ifAviBG} }
-
-#sidebar .desc { margin:1rem 0 0; text-align:{select:desc align}; }
+/* header ### */
+header { margin:50px 0; text-align:center; }
+header h1 { margin:10px 0; font-size:125%; font-weight:bold; }
+header h1 a { text-decoration:none; }
+header img { display:block; margin:10px auto; width:{text:avi width}; max-width:100%; }
+header p { margin:10px 0; }
+header ul { margin:10px 0; padding:0; list-style-type:none; }
+header ul li { display:inline-block; margin:0; padding:0; }
 
 /* posts ### */
-
-#posts { width:540px; float:right; }
-
-.post {
-margin:0 auto 5rem;
-background:{color:fg};
-border:1px solid {color:borders}; }
+section { margin:auto; }
+article { margin:0 auto 60px; }
 
 /* photo ### */
-
-.media img { width:100%; }
 figure.tmblr-full img { max-width:100%; }
-
+/* photoset ### */
 .photoset-grid { margin:0; }
 [photoset-layout] { grid-gap:0px; }
 [photoset-layout] div { cursor:pointer; }
-
-.post-content div.npf_row,
-.post div.npf_row,
-body div.npf_row { margin-left:0!important; margin-right:0!important; }
+.post-content div.npf_row, .post div.npf_row, body div.npf_row { margin-left:0!important; margin-right:0!important; }
 
 /* video ### */
-
 .tumblr_video_iframe { height:270px; width:100%!important; }
 
 /* audio ### */
-
 .tumblr_audio_player { max-width:100%; height:85px!important; }
 .spotify_audio_player { max-width:100%; height:80px!important; }
 .bandcamp_audio_player { height:120px!important; width:100%!important; }
 .soundcloud_audio_player { height:85px!important; width:100%!important; }
 
 /* quotes ### */
-
 .quote, p.npf_quote { font-size:1.5rem!important; font-style:italic; }
 
 /* post captions ### */
-
-.caption { padding:1rem; border-bottom:1px solid {color:borders}; }
+.caption { margin:10px 0; padding:0; } 
 .caption:empty { display:none; }
-
-.reblogger { margin:0.8rem 0; line-height:1; }
+.reblogger { margin:0; line-height:1; }
 .reblogger:first-child { margin-top:0; }
-.reblog-avatar { display:inline; margin-right:0.5rem; height:1rem; width:1rem; }
+.reblog-avatar { display:inline; margin-right:5px; height:1rem; width:1rem; }
 .reblog-username { font-weight:bold; text-decoration:none; vertical-align:middle; }
 
 /* post footer ### */
 
-.footer { display:block; margin:0; padding:1rem; }
-
+footer { margin:15px 0 0; padding:0; }
 .permalink { display:flex; justify-content:space-between; }
 
-.tags { margin:5px 0 0 0; }
-.tags a:before { content:'#'; margin-right:1px; }
-.tags a { margin-right:0.5rem; text-decoration:none; }
-.tags a:last-child { margin:0; }
-
-/* PAGINATION */
-
-#pag { display:flex; justify-content:space-between; align-items:center; }
-#pag a { padding:0.5rem 1rem; background:{color:fg}; border:1px solid {color:borders}; }
-
 /* PERMALINK */
-
 ol.notes { list-style-type:none; margin:0; padding:0; }
 ol.notes li.note img { display:none; }
 ol.notes li.note { display:block; margin:0; padding:0; }
@@ -202,16 +154,20 @@ ol.notes li.note { display:block; margin:0; padding:0; }
 
 <main>
 
-<aside>
-<div id="sidebar">
-  <div class="avi"><a href="/"><img src="{image:avi}"></a></div>
-  <div class="desc">{text:desc}</div>
-</div>
-</aside>
+<header>
+  <h1><a href="/">{text:title}</a></h1>
+  <a href="/"><img src="{image:sidebar}"></a>
+  <p>{text:desc}</p>
+  <ul>
+    <li><a href="{text:link 1 url}">{text:link 1 name}</a> * </li>
+    <li><a href="{text:link 2 url}">{text:link 2 name}</a> * </li>
+    <li><a href="{text:link 3 url}">{text:link 3 name}</a></li>
+  </ul>
+</header>
 
-<div id="posts">{block:Posts}
+<section id="posts">{block:Posts}
 
-<div class="post" post-type="{PostType}">
+<article class="post" post-type="{PostType}">
 
 <!-- TEXT POSTS -->
 {block:Text}
@@ -306,13 +262,12 @@ ol.notes li.note { display:block; margin:0; padding:0; }
 
 <!-- FOOTERS -->
 {block:Date}
-<div class="footer">
+<footer>
   <div class="permalink">
-    <div class="date"><a href="{Permalink}"><b>{TimeAgo}</b></a>{block:PinnedPostLabel} -- pinned{/block:PinnedPostLabel}</div>
-    <Div class="reblog"><a href="{ReblogURL}">reblog</a></div>
+    <div class="date"><a href="{Permalink}">{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}</a>{block:PinnedPostLabel} 📌{/block:PinnedPostLabel}</div>
+    <div class="reblog"><a href="{ReblogURL}">reblog</a></div>
   </div>
-  {block:HasTags}<div class="tags">{block:Tags}<a href="{TagURL}">{Tag}</a>{/block:Tags}</div>{/block:HasTags}
-</div>
+</footer>
 
 {block:PermalinkPage}
 {block:NoteCount}
@@ -324,7 +279,7 @@ ol.notes li.note { display:block; margin:0; padding:0; }
 
 {block:ContentSource} <!-- {SourceURL}{block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /> {/block:SourceLogo} {block:NoSourceLogo}{SourceLink}{/block:NoSourceLogo} --> {/block:ContentSource}
 
-</div>
+</article>
 {/block:Posts}
 
 {block:Pagination}
@@ -339,7 +294,7 @@ ol.notes li.note { display:block; margin:0; padding:0; }
   <br><br><br>
 {/block:Pagination}
 
-</div>
+</section>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="https://static.tumblr.com/qxrkgx6/q6kmgn2w2/jquery-1.8.3.min.js"><\/script>')</script>
