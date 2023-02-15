@@ -47,7 +47,6 @@ no.js photosets by annasthms.tumblr.com & egg.design
 <meta name="text:link 3 name" content=""/>
 <meta name="text:link 3 url" content=""/>
 
-<!--jquery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
 <!--no .js photosets-->
@@ -80,8 +79,6 @@ Tumblr.Lightbox.init(data, getIndex(elem) + 1);
         
 <style type="text/css">
 
-/* basics ### */
-
 body {
 font:{text:font size} '{text:font}';
 color:{color:text};
@@ -93,36 +90,28 @@ background-repeat:{select:bg repeat};
 background-attachment:fixed;
 background-position:center; }
 
-/* main container ### */
-main { width:700px; margin:50px auto; }
+main { width:500px; margin:50px auto; }
 
-/* sidebar ### */
 aside img { margin:0; width:{text:avi width}; max-width:100%; }
 
-/* posts ### */
-article { margin:0 auto; }
+article { margin:0 auto 50px; }
 
-/* photo ### */
-figure.tmblr-full img { max-width:100%; }
-/* photoset ### */
+.photo, figure.tmblr-full img { max-width:100%; }
+
 .photoset-grid { margin:0; }
 [photoset-layout] { grid-gap:0px; }
 [photoset-layout] div { cursor:pointer; }
 .post-content div.npf_row, .post div.npf_row, body div.npf_row { margin-left:0!important; margin-right:0!important; }
 
-/* video ### */
 .tumblr_video_iframe { height:270px; width:100%!important; }
 
-/* audio ### */
 .tumblr_audio_player { max-width:100%; height:85px!important; }
 .spotify_audio_player { max-width:100%; height:80px!important; }
 .bandcamp_audio_player { height:120px!important; width:100%!important; }
 .soundcloud_audio_player { height:85px!important; width:100%!important; }
 
-/* quotes ### */
 .quote, p.npf_quote { font-size:1.5rem!important; font-style:italic; }
 
-/* post captions ### */
 .caption { margin:0; padding:0; } 
 .caption:empty { display:none; }
 .reblogger { margin:0; line-height:1; }
@@ -130,11 +119,8 @@ figure.tmblr-full img { max-width:100%; }
 .reblog-avatar { display:inline; margin-right:5px; height:1rem; width:1rem; }
 .reblog-username { font-weight:bold; text-decoration:none; vertical-align:middle; }
 
-/* post footer ### */
-
 footer { margin:0; padding:0; }
 
-/* PERMALINK */
 ol.notes { list-style-type:none; margin:0; padding:0; }
 ol.notes li.note img { display:none; }
 ol.notes li.note { display:block; margin:0; padding:0; }
@@ -160,7 +146,6 @@ ol.notes li.note { display:block; margin:0; padding:0; }
 
 <article class="post" post-type="{PostType}">
 
-<!-- TEXT POSTS -->
 {block:Text}
   <div class="caption">
   {block:Title}<h1 class="title">{Title}</h1>{/block:Title}
@@ -181,14 +166,10 @@ ol.notes li.note { display:block; margin:0; padding:0; }
   </div>
 {/block:Text}
 
-<!-- PHOTO POSTS -->
 {block:Photo}
-  <div class="media">
-  {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}
-  </div>
+  <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="photo">
 {/block:Photo}
 
-<!-- PHOTOSETS -->
 {block:Photoset}
   <div class="photoset-grid" photoset-layout="{PhotosetLayout}">
     {block:Photos}<div data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" onclick="lightbox(this)"><img src="{PhotoURL-HighRes}" />
@@ -196,48 +177,36 @@ ol.notes li.note { display:block; margin:0; padding:0; }
   </div>
 {/block:Photoset}
 
-<!-- QUOTE POSTS -->
+{block:Panorama}
+  <img src="{PhotoURL-Panorama}" alt="{photoalt}">
+{/block:Panorama}
+
 {block:Quote}
   <div class="quote">"{Quote}"</div>
-  {block:Source}<div class="quotesource">&#8212;&nbsp;&nbsp;{Source}</div>{/block:Source}
+  {block:Source}<div class="quotesource">-{Source}</div>{/block:Source}
 {/block:Quote}
 
-<!-- LINK POSTS -->
 {block:Link}
   <div class="link"><a href="{URL}"><h1>{Name} →</a></h1></div>
 {/block:Link}
 
-<!-- CHAT POSTS -->
-{block:Chat}
-  {block:Title}<div class="title">{Title}</div>{/block:Title}
-  <div class="chat">
-  {block:Lines}
-    <div class="{Alt} user_{UserNumber}">
-      {block:Label}<b>{Label}</b>{/block:Label}&nbsp;{Line}
-    </div>
-  {/block:Lines}
-  </div>
-{/block:Chat}
+{block:Chat}<ul class="chat">
+  {block:Lines}<li>{block:Label}{Label}{/block:Label} {Line}</li>{/block:Lines}
+</ul>{/block:Chat}
 
-<!-- VIDEO POSTS -->
-{block:Video}
-  <div class="video">{Video-500}</div>
-{/block:Video}
-
-<!-- AUDIO POSTS -->
 {block:Audio}
-  <div class="audio">
-    {block:AudioEmbed}{AudioEmbed}{/block:AudioEmbed}
-  </div>
+  <div class="audio">{AudioEmbed}</div>
 {/block:Audio}
 
-<!-- ASK POSTS -->  
+{block:Video}
+  <div class="video">{Video-700}</div>
+{/block:Video}
+
 {block:Answer}
   <div class="question">{Asker}: {Question}</div>
-  <div class="caption">{Answer}</div>
+  {block:Answerer}<div class="answer">{Answerer}: {Answer}</div>{/block:Answerer}
 {/block:Answer}
 
-<!-- CAPTIONS -->
 {block:Caption}
   {block:NotReblog}<div class="caption">
     <div class="captionbody">{Caption}</div>
@@ -251,12 +220,11 @@ ol.notes li.note { display:block; margin:0; padding:0; }
   {/block:Reblogs}</div>{/block:RebloggedFrom}
 {/block:Caption}
 
-<!-- FOOTERS -->
 {block:Date}
 <footer>
   <div class="permalink">
     <div class="date"><a href="{Permalink}"><b>{TimeAgo}</b></a>{block:PinnedPostLabel} -- pinned{/block:PinnedPostLabel}</div>
-    <div class="reblog"><a href="{ReblogURL}">reblog</a></div>
+    <div class="like-reblog">{ReblogButton} {LikeButton}</div>
   </div>
   {block:ifTags}{block:HasTags}<div class="tags">{block:Tags}<a href="{TagURL}">{Tag}</a>{/block:Tags}</div>{/block:HasTags}{/block:ifTags}
 </footer>
@@ -274,17 +242,14 @@ ol.notes li.note { display:block; margin:0; padding:0; }
 </article>
 {/block:Posts}
 
-{block:Pagination}
-  <div id="pag">
-  {block:PreviousPage}
-    <a href="{PreviousPage}">← previous page</a>
-  {/block:PreviousPage}
-  {block:NextPage}
-    <a href="{NextPage}">next page →</a>
-  {/block:NextPage}
-  </div>
-  <br><br><br>
-{/block:Pagination}
+{block:Pagination}<div id="pag">
+  {block:PreviousPage}<a href="{PreviousPage}">← previous page</a>{/block:PreviousPage}
+  {block:JumpPagination length="5"}
+    {block:CurrentPage}<span class="current-page">{PageNumber}</span>{/block:CurrentPage}
+    {block:JumpPage}<a href="{URL}">{PageNumber}</a>{/block:JumpPage}
+  {/block:JumpPagination}
+  {block:NextPage}<a href="{NextPage}">next page →</a>{/block:NextPage}
+</div>{/block:Pagination}
 
 </section>
 
