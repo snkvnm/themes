@@ -135,11 +135,6 @@ ol.notes li.note { display:block; margin:0; padding:0; }
 <aside id="sidebar">
   <a href="/"><img src="{image:sidebar}"></a>
   <div class="desc">{text:desc}</div>
-  <ul>
-    <li><a href="{text:link 1 url}">{text:link 1 name}</a></li>
-    <li><a href="{text:link 2 url}">{text:link 2 name}</a></li>
-    <li><a href="{text:link 3 url}">{text:link 3 name}</a></li>
-  </ul>
 </aside>
 
 <section id="posts">{block:Posts}
@@ -224,7 +219,6 @@ ol.notes li.note { display:block; margin:0; padding:0; }
 <footer>
   <div class="permalink">
     <div class="date"><a href="{Permalink}"><b>{TimeAgo}</b></a>{block:PinnedPostLabel} -- pinned{/block:PinnedPostLabel}</div>
-    <div class="like-reblog">{ReblogButton} {LikeButton}</div>
   </div>
   {block:ifTags}{block:HasTags}<div class="tags">{block:Tags}<a href="{TagURL}">{Tag}</a>{/block:Tags}</div>{/block:HasTags}{/block:ifTags}
 </footer>
