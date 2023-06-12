@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<head>
+
+<!--
+THEME #00: BLANK by SNAKE (PLAYMOAR.NEOCITIES.ORG)
+---
+CREATIVE COMMONS ZERO (PUBLIC DOMAIN DEDICATION)
+creativecommons.org/publicdomain/zero/1.0
+---
+icons by phosphoricons.com
+npf images fix v3 by magnusthemes.tumblr.com
+-->
+
+<meta charset="utf-8">
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+<link href="https://cdn.jsdelivr.net/gh/suneteri/venom/venom.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family={text:font}&display=swap" rel="stylesheet"> 
+<title>{text:title}</title>
+{block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
+<!--image options-->
+<meta name="image:bg" content=""/>
+<meta name="image:sidebar" content=""/>
+<!--color options-->
+<meta name="color:bg" content="#3b627e"/>
+<meta name="color:fg" content="#fff"/>
+<meta name="color:fg2" content="#fff"/>
+<meta name="color:text" content="#111"/>
+<meta name="color:accent" content="#111"/>
+<meta name="color:borders" content="#111"/>
+<meta name="color:post shadow" content="#111"/>
+<!--selection options-->
+<meta name="select:bg size" content="auto"/>
+<meta name="select:bg size" content="cover"/>
+<meta name="select:bg size" content="contain"/>
+<meta name="select:bg repeat" content="repeat"/>
+<meta name="select:bg repeat" content="no-repeat"/>
+<meta name="select:bg repeat" content="round"/>
+<meta name="select:post size" content="400px"/>
+<meta name="select:post size" content="500px"/>
+<meta name="select:post size" content="540px"/>
+<meta name="select:sidebar align" content="left"/>
+<meta name="select:sidebar align" content="right"/>
+<meta name="select:sidebar align" content="center"/>
+<meta name="select:sidebar align" content="justify"/>
+<!-- boolean options -->
+<meta name="if:circle icon" />
+<meta name="if:link shadow" />
+<meta name="if:post shadow" />
+<meta name="if:tags" />
+<!--text options-->
+<meta name="text:font" content="Arial"/>
+<meta name="text:font size" content="1rem"/>
+<meta name="text:bg opacity" content="1"/>
+<meta name="text:post opacity" content="1"/>
+<meta name="text:title" content="title"/>
+<meta name="text:desc" content="desc"/>
+<meta name="text:avi width" content="auto"/>
+<meta name="text:link 1 url" content="link1"/>
+<meta name="text:link 1 name" content="link1"/>
+<meta name="text:link 1 icon" content="ph-info"/>
+<meta name="text:link 2 url" content="link2"/>
+<meta name="text:link 2 name" content="link2"/>
+<meta name="text:link 2 icon" content="ph-info"/>
+<meta name="text:link 3 url" content="link3"/>
+<meta name="text:link 3 name" content="link3"/>
+<meta name="text:link 3 icon" content="ph-info"/>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<!-- phosphor icons -->
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<!-- NPF images fix v3.0 by @glenthemes [2021] 💌 git.io/JRBt7 -->
+<script src="//npf-images-v3.github.io/script.js"></script>
+<link rel="stylesheet" href="//npf-images-v3.github.io/recon.css">
+<style tmblr-npf>
+:root {
+--NPF-Caption-Spacing:1rem;
+--NPF-Image-Spacing:1px; }
+</style>
+<link rel="stylesheet" media="screen" href="//assets.tumblr.com/client/prod/standalone/blog-network-npf/index.build.css">
+        
+<style type="text/css">
+
+:root {
+--fg:rgba({RGBcolor:fg}, {text:post opacity});
+--borders:1px solid {color:borders};
+--border-radius:10px; }
+
+body {
+font-family:{text:font};
+font-size:{text:font size};
+color:{color:text};
+word-wrap:break-word;
+background:{color:bg}; }
+
+a {
+text-decoration:none;
+color:{color:accent};
+{block:ifLinkShadow}
+  text-shadow:0 0 5px {color:accent};
+{/block:ifLinkShadow} }
+
+a:hover { color:{color:text}; }
+.body a { text-decoration:underline; }
+
+.ph { vertical-align:text-top; }
+
+#bg {
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+opacity:{text:bg opacity};
+z-index:-999;
+background-image:url('{image:bg}');
+background-size:{select:bg size};
+background-repeat:{select:bg repeat};
+background-attachment:fixed;
+background-position:center; }
+
+main { margin:auto; width:{select:post size}; }
+
+aside {
+position:fixed;
+margin:0 0 0 -300px;
+padding:1rem;
+width:250px;
+text-align:{select:sidebar align};
+background:var(--fg);
+border:var(--borders);
+border-radius:var(--border-radius);
+{block:ifPostShadow}
+  box-shadow:0 0 10px rgba({RGBcolor:post shadow},1);
+{/block:ifPostShadow} }
+
+aside h1 { font-size:135%; font-weight:700; }
+aside img { margin:0; width:{text:avi width}; max-width:100%; {block:ifCircleIcon}border-radius:100%;{/block:ifCircleIcon} }
+aside .desc { margin:1rem 0 0; }
+aside .links { margin:1rem 0 0; padding:0; list-style-type:none; }
+aside .links li { margin:5px 0 0; padding:0; }
+aside .links li .ph { margin-right:5px; }
+
+#posts { margin:50px; width:{select:post size}; }
+
+article {
+margin:0 auto 50px;
+padding:10px;
+background:{color:fg};
+border:var(--borders);
+border-radius:var(--border-radius);
+{block:ifPostShadow}
+  box-shadow:0 0 10px rgba({RGBcolor:post shadow},1);
+{/block:ifPostShadow} }
+
+.body h2 { font-size:125%; font-weight:700; }
+
+.photo, figure.tmblr-full img { max-width:100%; }
+
+.photoset-grid { margin:0; }
+[photoset-layout] { grid-gap:0px; }
+[photoset-layout] div { cursor:pointer; }
+.post-content div.npf_row, .post div.npf_row, body div.npf_row { margin-left:0!important; margin-right:0!important; }
+
+.tumblr_video_iframe { height:270px; width:100%!important; }
+
+.tumblr_audio_player { max-width:100%; height:85px!important; }
+.spotify_audio_player { max-width:100%; height:80px!important; }
+.bandcamp_audio_player { height:120px!important; width:100%!important; }
+.soundcloud_audio_player { height:85px!important; width:100%!important; }
+
+.quote, p.npf_quote { font-size:1.5rem!important; font-style:italic; }
+
+.caption { margin:1rem 0; padding:0 10px; } 
+.caption:empty { display:none; }
+
+.reblogger { margin:1.5rem 0 1rem 0; line-height:1; }
+.reblogger:first-child { margin-top:0; }
+.reblog-avatar { display:inline; margin-right:10px; height:24px; width:24px; border-radius:2px; }
+.reblog-username { font-weight:bold; text-decoration:none; vertical-align:middle; }
+
+footer { margin:1rem 0 0; font-size:85%; }
+.permalink, .sources, .tags { margin:5px 0 0; padding:5px 10px; background:{color:fg2}; border-radius:2px; }
+.sources { display:flex; justify-content:start; gap:10px; }
+
+ol.notes { list-style-type:none; margin:0; padding:0; }
+ol.notes li.note img { display:none; }
+ol.notes li.note { display:block; margin:0; padding:0; }
+
+#pag { display:flex; flex-flow:row nowrap; justify-content:space-evenly; }
+
+{CustomCSS}
+</style>
+</head>
+<body>
+
+<div id="bg"></div>
+
+<main>
+
+<aside id="sidebar">
+  <h1>{text:title}</h1>
+  <a href="/"><img src="{image:sidebar}"></a>
+  <div class="desc">{text:desc}</div>
+  <ul class="links">
+    <li><a href="/">index</a></li>
+    <li><a href="/archive">archive</a></li>
+    <li><a href="{text:link 1 url}">{text:link 1 name}</a>
+    <li><a href="{text:link 2 url}">{text:link 2 name}</a>
+    <li><a href="{text:link 3 url}">{text:link 3 name}</a>
+  </ul>
+</aside>
+
+<section id="posts">{block:Posts inlineMediaWidth="1280" inlineNestedMediaWidth="1280"}
+
+<article class="post" id="{PostID}" post-type="{PostType}">
+
+{block:Text}
+  <div class="caption">
+    {block:Title}<h2 class="title">{Title}</h2>{/block:Title}
+    {block:Body}
+    {block:RebloggedFrom}
+    {block:Reblogs}
+      {block:Date}<div class="reblogger source-head">
+        <img class="reblog-avatar" src="{PortraitURL-64}" alt="{Username}'s avatar">
+        <a class="reblog-username" href="{Permalink}">{Username}</a>
+      </div>{/block:Date}
+      <div class="body">{Body}</div>
+    {/block:Reblogs}
+    {/block:RebloggedFrom}
+    {block:NotReblog}
+      <div class="body">{Body}</div>
+    {/block:NotReblog}
+    {/block:Body}
+  </div>
+{/block:Text}
+
+{block:Photo}
+  <div class="photo"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"></div>
+{/block:Photo}
+
+{block:Photoset}
+  <div class="photoset">{Photoset}</div>
+{/block:Photoset}
+
+{block:Panorama}
+  <div class="photo"><img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"></div>
+{/block:Panorama}
+
+{block:Quote}
+  <div class="quote">"{Quote}"</div>
+  {block:Source}<div class="quotesource">-{Source}</div>{/block:Source}
+{/block:Quote}
+
+{block:Link}
+  <div class="link"><a href="{URL}">{Name}</a></div>
+{/block:Link}
+
+{block:Chat}<ul class="chat">
+  {block:Lines}
+    <li>{block:Label}{Label}{/block:Label} {Line}</li>
+  {/block:Lines}
+</ul>{/block:Chat}
+
+{block:Audio}
+  <div class="audio">{AudioEmbed}</div>
+{/block:Audio}
+
+{block:Video}
+  <div class="video">{Video-500}</div>
+{/block:Video}
+
+{block:Answer}
+  <div class="question">{Asker}: {Question}</div>
+  {block:Answerer}
+    <div class="answer">{Answerer}: {Answer}</div>
+  {/block:Answerer}
+{/block:Answer}
+
+{block:Caption}
+  <div class="caption">
+    {block:RebloggedFrom}
+    {block:Reblogs}
+      {block:Date}<div class="reblogger source-head">
+        <img class="reblog-avatar" src="{PortraitURL-64}" alt="{Username}'s avatar">
+        <a class="reblog-username" href="{Permalink}">{Username}</a>
+      </div>{/block:Date}
+      <div class="body">{Body}</div>
+    {/block:Reblogs}
+    {/block:RebloggedFrom}
+    {block:NotReblog}
+      <div class="body">{Body}</div>
+    {/block:NotReblog}
+  </div>
+{/block:Caption}
+
+{block:Date}
+<footer>
+  <div class="permalink">{block:PinnedPostLabel}<i class="ph ph-push-pin"></i> {/block:PinnedPostLabel}
+    {block:NotReblog}Posted{/block:NotReblog}{block:RebloggedFrom}Reblogged{/block:RebloggedFrom} on <a href="{Permalink}" title="{TimeAgo}">{DayOfMonth} {ShortMonth} {Year}</a>
+  </div>
+  {block:RebloggedFrom}
+  <div class="sources">
+    <span class="op">op: <a href="{ReblogRootURL}">{ReblogRootName}</a></span> 
+    <span class="via">via: <a href="{ReblogParentURL}">{ReblogParentName}</a></span> 
+    {block:ContentSource}<span class="src">src: <a href="{SourceURL}">source</a></span>{/block:ContentSource}
+  </div>
+  {/block:RebloggedFrom}
+  {block:ifTags}
+    {block:HasTags}
+      <div class="tags">{block:Tags}<a href="{TagURL}">#{Tag}</a> {/block:Tags}</div>
+    {/block:HasTags}
+  {/block:ifTags}
+</footer>
+
+{block:PermalinkPage}
+  {block:NoteCount}
+  {block:PostNotes}{PostNotes}{/block:PostNotes}
+  {/block:NoteCount}
+{/block:PermalinkPage}
+
+{/block:Date}
+
+{block:ContentSource} <!-- {SourceURL}{block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /> {/block:SourceLogo} {block:NoSourceLogo}{SourceLink}{/block:NoSourceLogo} --> {/block:ContentSource}
+
+</article>
+{/block:Posts}
+
+{block:Pagination}<div id="pag">
+  {block:PreviousPage}<b><a href="{PreviousPage}"><i class="ph ph-arrow-left"></i> BACK</a></b>{/block:PreviousPage}
+  {block:JumpPagination length="5"}
+    {block:CurrentPage}<span class="current-page">{PageNumber}</span>{/block:CurrentPage}
+    {block:JumpPage}<a href="{URL}">{PageNumber}</a>{/block:JumpPage}
+  {/block:JumpPagination}
+  {block:NextPage}<b><a href="{NextPage}">NEXT <i class="ph ph-arrow-right"></i></a></b>{/block:NextPage}
+</div>{/block:Pagination}
+
+</section>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://static.tumblr.com/qxrkgx6/q6kmgn2w2/jquery-1.8.3.min.js"><\/script>')</script>
+
+</main>
+</body>
+</html>
