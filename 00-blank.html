@@ -7,6 +7,7 @@ THEME #00: BASE by SNAKE (PLAYMOAR.NEOCITIES.ORG)
 CREATIVE COMMONS ZERO (PUBLIC DOMAIN DEDICATION)
 creativecommons.org/publicdomain/zero/1.0
 ---
+npf images fix v3 by magnusthemes.tumblr.com
 no.js photosets by annasthms.tumblr.com & egg.design
 -->
 
@@ -15,13 +16,14 @@ no.js photosets by annasthms.tumblr.com & egg.design
 <link rel="shortcut icon" href="{Favicon}">
 <link rel="alternate" type="application/rss+xml" href="{RSS}">
 <link href="https://cdn.jsdelivr.net/gh/suneteri/venom/venom.css" rel="stylesheet">
-<link href="https://api.fonts.coollabs.io/css?family={text:font}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family={text:font}&display=swap" rel="stylesheet"> 
 <!--image options-->
-<meta name="image:bg" content=""/>
+<meta name="image:background" content=""/>
 <meta name="image:sidebar" content=""/>
 <!--color options-->
-<meta name="color:bg" content="#3b627e"/>
-<meta name="color:fg" content="#fff"/>
+<meta name="color:background" content="#3b627e"/>
+<meta name="color:foreground" content="#fff"/>
+<meta name="color:borders" content="#aaa"/>
 <meta name="color:text" content="#111"/>
 <!--selection options-->
 <meta name="select:bg size" content="auto"/>
@@ -29,19 +31,31 @@ no.js photosets by annasthms.tumblr.com & egg.design
 <meta name="select:bg size" content="contain"/>
 <meta name="select:bg repeat" content="repeat"/>
 <meta name="select:bg repeat" content="no-repeat"/>
-<meta name="select:bg repeat" content="round"/>
-<meta name="select:sidebar align" content="left"/>
-<meta name="select:sidebar align" content="right"/>
-<meta name="select:sidebar align" content="center"/>
-<meta name="select:sidebar align" content="justify"/>
+<!-- boolean options -->
+<meta name="if:tags" />
 <!--text options-->
 <meta name="text:font" content="Arial"/>
 <meta name="text:font size" content="1rem"/>
-<meta name="text:avi width" content="auto"/>
 <meta name="text:title" content="title"/>
 <meta name="text:desc" content="desc"/>
+<meta name="text:link 1 url" content="link1"/>
+<meta name="text:link 1 name" content="link1"/>
+<meta name="text:link 2 url" content="link2"/>
+<meta name="text:link 2 name" content="link2"/>
+<meta name="text:link 3 url" content="link3"/>
+<meta name="text:link 3 name" content="link3"/>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<!-- NPF images fix v3.0 by @glenthemes [2021] 💌 git.io/JRBt7 -->
+<script src="//npf-images-v3.github.io/script.js"></script>
+<link rel="stylesheet" href="//npf-images-v3.github.io/recon.css">
+<style tmblr-npf>
+:root {
+--NPF-Caption-Spacing:1rem;
+--NPF-Image-Spacing:1px; }
+</style>
+<link rel="stylesheet" media="screen" href="//assets.tumblr.com/client/prod/standalone/blog-network-npf/index.build.css">
 
 <!--no .js photosets-->
 <link href="https://static.tumblr.com/0podkko/oDSpg7y88/photosets.css" rel="stylesheet">
@@ -74,30 +88,41 @@ Tumblr.Lightbox.init(data, getIndex(elem) + 1);
 <style type="text/css">
 
 body {
-font:{text:font size} '{text:font}';
+font-family:{text:font};
+font-size:{text:font size};
 color:{color:text};
 word-wrap:break-word;
-background:{color:bg};
-background-image:url('{image:bg}');
+background:{color:background};
+background-image:url('{image:background}');
 background-size:{select:bg size};
 background-repeat:{select:bg repeat};
 background-attachment:fixed;
 background-position:center; }
 
+h1 { font-size:1.5rem; font-weight:900; }
+h2 { font-size:1.3rem; font-weight:700; }
+h3 { font-size:1.15rem; font-weight:500; }
+h4, h5, h6 { font-size:1rem; }
+
+li { margin-left:-10px; padding-left:10px; }
+
+blockquote { margin-left:1rem; padding-left:1rem; border-left:3px solid {color:borders}; }
+
 main { width:500px; margin:50px auto; }
 
-aside img { margin:0; width:{text:avi width}; max-width:100%; }
+aside { position:fixed; width:200px; margin:150px 0 0 -300px; }
+aside h1 { margin:0 0 1rem; }
+aside img { margin:0; width:auto; max-width:100%; }
+aside .desc { margin:1rem 0 0; }
+aside .links { margin:1rem 0 0; padding:0; list-style-type:none; }
 
-article { margin:0 auto 50px; }
+article { margin:0 auto 75px; }
 
 .photo, figure.tmblr-full img { max-width:100%; }
 
 .photoset-grid { margin:0; }
-[photoset-layout] { grid-gap:0px; }
+[photoset-layout] { grid-gap:1px; }
 [photoset-layout] div { cursor:pointer; }
-.post-content div.npf_row, .post div.npf_row, body div.npf_row { margin-left:0!important; margin-right:0!important; }
-
-.tumblr_video_iframe { height:270px; width:100%!important; }
 
 .tumblr_audio_player { max-width:100%; height:85px!important; }
 .spotify_audio_player { max-width:100%; height:80px!important; }
@@ -106,18 +131,21 @@ article { margin:0 auto 50px; }
 
 .quote, p.npf_quote { font-size:1.5rem!important; font-style:italic; }
 
-.caption { margin:0; padding:0; } 
+.caption { margin:0; padding:0; }
 .caption:empty { display:none; }
-.reblogger { margin:0; line-height:1; }
-.reblogger:first-child { margin-top:0; }
-.reblog-avatar { display:inline; margin-right:5px; height:1rem; width:1rem; }
-.reblog-username { font-weight:bold; text-decoration:none; vertical-align:middle; }
 
-footer { margin:0; padding:0; }
+.reblogger { margin:1rem 0; line-height:1; }
+.text .reblogger:first-child { margin-top:0; }
+.reblog-avatar { display:inline; margin-right:10px; height:32px; width:32px; border-radius:5px; }
+.reblog-username { font-weight:bold; vertical-align:middle; }
+
+footer { margin:1rem 0 0; padding:0; }
 
 ol.notes { list-style-type:none; margin:0; padding:0; }
 ol.notes li.note img { display:none; }
 ol.notes li.note { display:block; margin:0; padding:0; }
+
+#pag { display:flex; flex-flow:row nowrap; justify-content:space-evenly; }
 
 {CustomCSS}
 </style>
@@ -127,36 +155,44 @@ ol.notes li.note { display:block; margin:0; padding:0; }
 <main>
 
 <aside id="sidebar">
-  <a href="/"><img src="{image:sidebar}"></a>
+  <h1><a href="/">{text:title}</a></h1>
+  <img src="{image:sidebar}">
   <div class="desc">{text:desc}</div>
+  <ul class="links">
+    <li><a href="/">index</a></li>
+    <li><a href="/archive">archive</a></li>
+    <li><a href="{text:link 1 url}">{text:link 1 name}</a>
+    <li><a href="{text:link 2 url}">{text:link 2 name}</a>
+    <li><a href="{text:link 3 url}">{text:link 3 name}</a>
+  </ul>
 </aside>
 
 <section id="posts">{block:Posts}
 
 <article class="post" post-type="{PostType}">
 
-{block:Text}
+{block:Text}<div class="text">
   <div class="caption">
-  {block:Title}<h1 class="title">{Title}</h1>{/block:Title}
-  {block:Body}
-  {block:RebloggedFrom}
-  {block:Reblogs}
-    {block:Date}<div class="reblogger">
-      <img class="reblog-avatar" src="{PortraitURL-64}">
-      <a class="reblog-username" href="{Permalink}">{Username}</a>
-    </div>{/block:Date}
-    <div class="captionbody">{Body}</div>
-  {/block:Reblogs}
-  {/block:RebloggedFrom}
-  {block:NotReblog}
-    <div class="captionbody">{Body}</div>
-  {/block:NotReblog}
-  {/block:Body}
+    {block:Title}<h2 class="title">{Title}</h2>{/block:Title}
+    {block:Body}
+    {block:RebloggedFrom}
+    {block:Reblogs}
+      {block:Date}<div class="reblogger source-head">
+        <img class="reblog-avatar" src="{PortraitURL-64}" alt="{Username}'s avatar">
+        <a class="reblog-username" href="{Permalink}">{Username}</a>
+      </div>{/block:Date}
+      <div class="body">{Body}</div>
+    {/block:Reblogs}
+    {/block:RebloggedFrom}
+    {block:NotReblog}
+      <div class="body">{Body}</div>
+    {/block:NotReblog}
+    {/block:Body}
   </div>
-{/block:Text}
+</div>{/block:Text}
 
 {block:Photo}
-  <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="photo">
+  <div class="photo"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"></div>
 {/block:Photo}
 
 {block:Photoset}
@@ -167,7 +203,7 @@ ol.notes li.note { display:block; margin:0; padding:0; }
 {/block:Photoset}
 
 {block:Panorama}
-  <img src="{PhotoURL-Panorama}" alt="{photoalt}">
+  <div class="photo"><img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"></div>
 {/block:Panorama}
 
 {block:Quote}
@@ -176,11 +212,13 @@ ol.notes li.note { display:block; margin:0; padding:0; }
 {/block:Quote}
 
 {block:Link}
-  <div class="link"><a href="{URL}"><h1>{Name} →</a></h1></div>
+  <div class="link"><a href="{URL}">{Name}</a></div>
 {/block:Link}
 
 {block:Chat}<ul class="chat">
-  {block:Lines}<li>{block:Label}{Label}{/block:Label} {Line}</li>{/block:Lines}
+  {block:Lines}
+    <li>{block:Label}{Label}{/block:Label} {Line}</li>
+  {/block:Lines}
 </ul>{/block:Chat}
 
 {block:Audio}
@@ -188,25 +226,31 @@ ol.notes li.note { display:block; margin:0; padding:0; }
 {/block:Audio}
 
 {block:Video}
-  <div class="video">{Video-700}</div>
+  <div class="video">{Video-500}</div>
 {/block:Video}
 
 {block:Answer}
   <div class="question">{Asker}: {Question}</div>
-  {block:Answerer}<div class="answer">{Answerer}: {Answer}</div>{/block:Answerer}
+  {block:Answerer}
+    <div class="answer">{Answerer}: {Answer}</div>
+  {/block:Answerer}
 {/block:Answer}
 
 {block:Caption}
-  {block:NotReblog}<div class="caption">
-    <div class="captionbody">{Caption}</div>
-  </div>{/block:NotReblog}
-  {block:RebloggedFrom}<div class="caption">{block:Reblogs}
-    <div class="reblogger">
-      <img class="reblog-avatar" src="{PortraitURL-64}">
-      <a class="reblog-username" href="{Permalink}">{Username}</a>
-    </div>
-    <div class="captionbody">{Body}</div>
-  {/block:Reblogs}</div>{/block:RebloggedFrom}
+  <div class="caption">
+    {block:RebloggedFrom}
+    {block:Reblogs}
+      {block:Date}<div class="reblogger source-head">
+        <img class="reblog-avatar" src="{PortraitURL-64}" alt="{Username}'s avatar">
+        <a class="reblog-username" href="{Permalink}">{Username}</a>
+      </div>{/block:Date}
+      <div class="body">{Body}</div>
+    {/block:Reblogs}
+    {/block:RebloggedFrom}
+    {block:NotReblog}
+      <div class="body">{Body}</div>
+    {/block:NotReblog}
+  </div>
 {/block:Caption}
 
 {block:Date}
@@ -214,13 +258,13 @@ ol.notes li.note { display:block; margin:0; padding:0; }
   <div class="permalink">
     <div class="date"><a href="{Permalink}"><b>{TimeAgo}</b></a>{block:PinnedPostLabel} -- pinned{/block:PinnedPostLabel}</div>
   </div>
-  {block:ifTags}{block:HasTags}<div class="tags">{block:Tags}<a href="{TagURL}">{Tag}</a>{/block:Tags}</div>{/block:HasTags}{/block:ifTags}
+  {block:ifTags}{block:HasTags}<div class="tags">{block:Tags}<a href="{TagURL}">#{Tag}</a> {/block:Tags}</div>{/block:HasTags}{/block:ifTags}
 </footer>
 
 {block:PermalinkPage}
-{block:NoteCount}
-{block:PostNotes}{PostNotes}{/block:PostNotes}
-{/block:NoteCount}
+  {block:NoteCount}
+    {block:PostNotes}{PostNotes}{/block:PostNotes}
+  {/block:NoteCount}
 {/block:PermalinkPage}
 
 {/block:Date}
