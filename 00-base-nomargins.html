@@ -8,7 +8,6 @@ CREATIVE COMMONS ZERO (PUBLIC DOMAIN DEDICATION)
 creativecommons.org/publicdomain/zero/1.0
 ---
 icons by phosphoricons.com
-style-my-tooltips by manos.malihu.gr
 npf images fix v3 by magnusthemes.tumblr.com
 no.js photosets by annasthms.tumblr.com & egg.design
 -->
@@ -19,7 +18,7 @@ no.js photosets by annasthms.tumblr.com & egg.design
 <link rel="alternate" type="application/rss+xml" href="{RSS}">
 <link href="https://cdn.jsdelivr.net/gh/suneteri/venom/venom.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/gh/suneteri/venom/fonts.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family={text:font}&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family={text:font}:wght@200,400,700&display=swap" rel="stylesheet"> 
 <!--image options-->
 <meta name="image:background" content=""/>
 <meta name="image:sidebar" content=""/>
@@ -37,7 +36,10 @@ no.js photosets by annasthms.tumblr.com & egg.design
 <!-- boolean options -->
 <meta name="if:text shadows" />
 <meta name="if:sidebar title" />
+<meta name="if:rainbow title" />
+<meta name="if:sidebar image" />
 <meta name="if:tags" />
+<meta name="if:italic tags" />
 <meta name="if:hashtag" />
 <!--text options-->
 <meta name="text:font" content="Arial"/>
@@ -57,29 +59,12 @@ no.js photosets by annasthms.tumblr.com & egg.design
 <!-- phosphor icons -->
 <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-<!-- style-my-tooltips -->
-<link href="style-my-tooltips.css" rel="stylesheet" type="text/css" />
-<script src="jquery.style-my-tooltips.js"></script>
-<script src="//static.tumblr.com/iuw14ew/VSQma1786/jquery.style-my-tooltips.js"></script>
-<script>
-(function($){
-$(document).ready(function(){
-$("a[title]").style_my_tooltips({
-tip_follows_cursor:true,
-tip_delay_time:0,
-tip_fade_speed:0,
-attribute:"title"
-});
-});
-})(jQuery);
-</script>
-
 <!-- NPF images fix v3.0 by @glenthemes [2021] 💌 git.io/JRBt7 -->
 <script src="//npf-images-v3.github.io/script.js"></script>
 <link rel="stylesheet" href="//npf-images-v3.github.io/recon.css">
 <style tmblr-npf>
 :root {
---NPF-Caption-Spacing:1rem;
+--NPF-Caption-Spacing:0;
 --NPF-Image-Spacing:1px; }
 </style>
 <link rel="stylesheet" media="screen" href="//assets.tumblr.com/client/prod/standalone/blog-network-npf/index.build.css">
@@ -119,6 +104,7 @@ font-family:{text:font};
 font-size:{text:font size};
 color:{color:text};
 {block:ifTextShadows}text-shadow:1px 1px 0 #000;{/block:ifTextShadows}
+text-rendering:optimizeLegibility;
 word-wrap:break-word;
 background:{color:background};
 background-image:url('{image:background}');
@@ -129,43 +115,40 @@ background-position:center; }
 
 a { color:{color:accent}; text-decoration:none; }
 a:hover { color:{color:text}; }
-.title a, footer a { color:{color:text}; }
+footer a { color:{color:text}; }
 
+p { margin:0; }
 h1 { font-size:1.5rem; font-weight:900; }
 h2 { font-size:1.3rem; font-weight:700; }
-h3 { font-size:1.15rem; font-weight:500; }
+h3 { font-size:1.15rem; font-weight:600; }
 h4, h5, h6 { font-size:1rem; }
-li { margin:5px 0 5px -10px; padding-left:10px; }
-blockquote { margin-left:1rem; padding-left:1rem; border-left:3px solid {color:borders}; }
+li { margin:0 0 0 -10px; padding-left:10px; }
+blockquote { margin-left:0.4rem; padding-left:1rem; border-left:2px solid {color:borders}; }
 
-/* TOOLTIPS */
-#s-m-t-tooltip {
-margin:1rem;
-padding:5px 10px;
-max-width:300px;
-font-family:{text:font};
-color:{color:text};
-background:{color:background};
-border:1px solid {color:borders};
-border-radius:{text:border radius};
-z-index:99999999999999999999; }
+p:empty, p:-moz-only-whitespace, .caption:empty, .caption:-moz-only-whitespace
+{ display:none; }
 
 /* MAIN CONTAINER */
 main { width:500px; margin:50px auto; }
 
 /* SIDEBAR */
 aside { position:fixed; width:200px; margin:150px 0 0 -300px; }
-aside h1 { margin:0 0 1rem; }
+aside h1 { margin:0; font-weight:bold; }
+aside h1 a { font-weight:900; {block:ifRainbowTitle}background:linear-gradient(25deg,#FF01D7,#FFEB00,#00EDF5,#5600CC); background-clip:text; color:transparent; text-shadow:none!important;{/block:ifRainbowTitle} }
 aside img { margin:0; width:auto; }
-aside .desc { margin:1rem 0 0; }
-aside .links { margin:1rem 0 0; padding:0; list-style-type:none; }
+aside .desc { margin:0; }
+aside .links { margin:0; padding:0; list-style-type:none; }
 
 /* POSTS */
-article { margin:0 auto 50px; }
+article { margin:0 auto 100px; }
+
+/* TEXT */
+.body { margin:0; }
 
 /* PHOTOS */
-.photo, figure.tmblr-full img { max-width:100%; }
-.npf_inst { margin:0!important; }
+.photo, figure.tmblr-full img { display:block; max-width:100%; }
+.npf_inst { margin:0; }
+.npf-no-caption { margin-bottom:0!important; }
 .photoset-grid { margin:0; }
 [photoset-layout] { grid-gap:1px; }
 [photoset-layout] div { cursor:pointer; }
@@ -177,24 +160,23 @@ article { margin:0 auto 50px; }
 .soundcloud_audio_player { height:85px!important; width:100%!important; }
 
 /* QUOTES */
-.quote, p.npf_quote { font-size:1.5rem!important; font-style:italic; }
+.quote, p.npf_quote { font-size:0; font-style:italic; }
 
 /* CAPTIONS */
 .caption { margin:0; padding:0; }
-.reblogger { margin:1rem 0; line-height:1; }
-.reblog-avatar { display:inline; margin-right:10px; height:24px; width:24px; border-radius:{text:border radius}; {block:ifnotCaptionAvatars}display:none;{/block:ifnotCaptionAvatars} }
+.reblogger { margin:0; line-height:1; }
+.reblog-avatar { display:inline; margin-right:10px; height:16px; width:16px; border-radius:{text:border radius}; {block:ifnotCaptionAvatars}display:none;{/block:ifnotCaptionAvatars} }
 .reblog-username { font-weight:bold; vertical-align:middle; }
 
 /* FOOTER */
-footer { margin:1rem 0 0; padding:0; }
+footer { margin:0; padding:0; }
 .permalink { display:flex; justify-content:space-between; font-weight:700; }
-.buttons { display:flex; gap:5px; }
+.buttons { display:flex; gap:0.25rem; }
 .like { position:relative; }
 .like .like_button { position:absolute; height:100%; width:100%; }
 .like .like_button iframe { position:absolute; top:0; left:0; bottom:0; right:0; opacity:0; z-index:9; }
 .like-button-parent .like_button.liked + span { color:{color:accent}; }
-.tags { margin-top:5px; font-size:90%; }
-.tags a { margin-right:5px; }
+.tags { font-size:90%; {block:ifItalicTags}font-style:italic;{/block:ifItalicTags} }
 
 /* NOTES */
 ol.notes { list-style-type:none; margin:0; padding:0; }
@@ -213,7 +195,7 @@ ol.notes li.note { display:block; margin:5px 0; padding:0; }
 
 <aside id="sidebar">
   {block:ifSidebarTitle}<h1 class="title"><a href="/">{text:title}</a></h1>{/block:ifSidebarTitle}
-  <img src="{image:sidebar}">
+  {block:ifSidebarImage}<img src="{image:sidebar}">{block:ifSidebarImage}
   <div class="desc">{text:desc}</div>
   <ul class="links">
     <li><a href="/">index</a></li>
@@ -345,12 +327,12 @@ ol.notes li.note { display:block; margin:5px 0; padding:0; }
 {/block:Posts}
 
 {block:Pagination}<div id="pag">
-  {block:PreviousPage}<a href="{PreviousPage}">← previous page</a>{/block:PreviousPage}
+  {block:PreviousPage}<a href="{PreviousPage}">← back</a>{/block:PreviousPage}
   {block:JumpPagination length="5"}
     {block:CurrentPage}<span class="current-page">{PageNumber}</span>{/block:CurrentPage}
     {block:JumpPage}<a href="{URL}">{PageNumber}</a>{/block:JumpPage}
   {/block:JumpPagination}
-  {block:NextPage}<a href="{NextPage}">next page →</a>{/block:NextPage}
+  {block:NextPage}<a href="{NextPage}">next →</a>{/block:NextPage}
 </div>{/block:Pagination}
 
 </section>
