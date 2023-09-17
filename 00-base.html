@@ -33,6 +33,9 @@
 <meta name="select:bg size" content="contain">
 <meta name="select:bg repeat" content="repeat">
 <meta name="select:bg repeat" content="no-repeat">
+<meta name="select:sidebar align" content="left">
+<meta name="select:sidebar align" content="center">
+<meta name="select:sidebar align" content="right">
 <!-- boolean options -->
 <meta name="if:sidebar title">
 <meta name="if:sidebar image">
@@ -63,6 +66,7 @@ body {
 font-family:{text:font};
 font-size:{text:font size};
 color:{color:text};
+line-height:1.7;
 word-wrap:break-word;
 background:{color:background};
 background-image:url('{image:background}');
@@ -71,7 +75,7 @@ background-repeat:{select:bg repeat};
 background-attachment:fixed;
 background-position:center; }
 
-h1 a, footer a { text-decoration:none; }
+a:hover, h1 a, #pag a, .reblogger a, footer a { text-decoration:none; }
 
 h1 { font-size:1.5rem; font-weight:900; }
 h2 { font-size:1.3rem; font-weight:700; }
@@ -99,7 +103,7 @@ align-content:center;
 width:200px;
 height:100vh; }
 
-#sidebar { position:fixed; width:200px; }
+#sidebar { position:fixed; width:200px; text-align:{select:sidebar align}; }
 
 #sidebar h1 { margin-top:0; }
 
@@ -111,6 +115,7 @@ margin:1rem auto; }
 #sidebar ul {
 display:flex;
 flex-flow:row wrap;
+justify-content:{select:sidebar align};
 gap:0.5rem;
 list-style-type:none;
 margin:1rem 0 0;
@@ -135,8 +140,21 @@ margin:50px auto; }
 .caption { margin:1rem 0 0; padding:0; }
 
 .reblogger { margin:0.5rem 0; line-height:1; }
-.reblog-avatar { display:none; }
+.reblog-avatar { margin-right:0.5rem; width:16px; border-radius:4px; vertical-align:middle; }
 .reblog-username { font-weight:bold; vertical-align:middle; }
+
+.question { margin:0 0 1.25rem; border-bottom:1px dotted {color:text}; }
+.question p:first-of-type { margin-top:0.5rem; }
+
+.source {
+margin:0.5rem;
+max-width:100%;
+font-size:85%;
+line-height:1;
+opacity:60%;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis; }
 
 footer { margin:1rem 0 0; }
 .permalink { display:flex; justify-content:space-between; font-weight:700; }
@@ -238,10 +256,9 @@ ol.notes li.note { display:block; margin:5px 0; padding:0; }
 {/block:Audio}
 
 {block:Answer}
-  <div class="question">{Asker}: {Question}</div>
-  {block:Answerer}
-    <div class="answer">{Answerer}: {Answer}</div>
-  {/block:Answerer}
+  <div class="question"><b>{Asker}</b>: {Question}</div>
+  {block:Answerer}<div class="answer">{Answerer}: {Answer}</div>{/block:Answerer}
+  {block:NotReblog}<div class="answer">{Replies}</div>{/block:NotReblog}
 {/block:Answer}
 
 <div class="caption">
@@ -259,13 +276,14 @@ ol.notes li.note { display:block; margin:5px 0; padding:0; }
           <a href="{Permalink}"><img class="reblog-avatar" src="{PortraitURL-64}" alt="{Username}'s avatar"></a>
           <a href="{Permalink}" class="reblog-username">{Username}</a>
         </div>
-        <div class="reblog-body">{Body}</div>
+        <div class="reblog body">{Body}</div>
       </div>
     {/block:Reblogs}
   {/block:RebloggedFrom}
 </div>
 
 {block:Date}
+{block:ContentSource}<div class="source"><a href="{SourceURL}"><i class="ph ph-link-simple"></i> <b>source</b>: {SourceURL}</a></div>{/block:ContentSource}
 <footer>
   <div class="permalink">
     <div class="date">{block:PinnedPostLabel}<i class="ph ph-push-pin"></i>{/block:PinnedPostLabel} <a href="{Permalink}" title="{TimeAgo}">{Year}.{DayOfMonthWithZero}.{MonthNumberWithZero}</a></div>
