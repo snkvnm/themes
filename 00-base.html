@@ -4,12 +4,12 @@
 
 <!--
 
-  THEME #00: BASE by SNAKE (PLAYMOAR.NEOCITIES.ORG)
+  THM#00:BASE by snake (terrybogard.gay)
 
   CREATIVE COMMONS ZERO (PUBLIC DOMAIN DEDICATION)
   creativecommons.org/publicdomain/zero/1.0
 
-  icons by phosphoricons.com
+  icons by phosphor icons <https://phosphoricons.com/>
 
 -->
 
@@ -37,11 +37,7 @@
 <meta name="select:sidebar align" content="center">
 <meta name="select:sidebar align" content="right">
 <!-- boolean options -->
-<meta name="if:sidebar title">
-<meta name="if:sidebar image">
-<meta name="if:sidebar desc">
-<meta name="if:extra links">
-<meta name="if:tags">
+<meta name="if:rss link">
 <meta name="if:hashtag">
 <!--text options-->
 <meta name="text:font" content="Favorit">
@@ -75,7 +71,7 @@ background-repeat:{select:bg repeat};
 background-attachment:fixed;
 background-position:center; }
 
-a:hover, h1 a, #pag a, .reblogger a, footer a { text-decoration:none; }
+a { text-decoration:none; }
 
 h1 { font-size:1.5rem; font-weight:900; }
 h2 { font-size:1.3rem; font-weight:700; }
@@ -103,7 +99,10 @@ align-content:center;
 width:200px;
 height:100vh; }
 
-#sidebar { position:fixed; width:200px; text-align:{select:sidebar align}; }
+#sidebar {
+position:fixed;
+width:200px;
+text-align:{select:sidebar align}; }
 
 #sidebar h1 { margin-top:0; }
 
@@ -137,14 +136,9 @@ margin:50px auto; }
 
 .post { width:100%; }
 
-.caption { margin:1rem 0 0; padding:0; }
-
-.reblogger { margin:0.5rem 0; line-height:1; }
-.reblog-avatar { margin-right:0.5rem; width:16px; border-radius:4px; vertical-align:middle; }
+.reblogger { line-height:1; }
+.reblog-avatar { width:16px; height:16px; border-radius:4px; vertical-align:middle; }
 .reblog-username { font-weight:bold; vertical-align:middle; }
-
-.question { margin:0 0 1.25rem; border-bottom:1px dotted {color:text}; }
-.question p:first-of-type { margin-top:0.5rem; }
 
 .source {
 margin:0.5rem;
@@ -156,20 +150,20 @@ white-space:nowrap;
 overflow:hidden;
 text-overflow:ellipsis; }
 
-footer { margin:1rem 0 0; }
-.permalink { display:flex; justify-content:space-between; font-weight:700; }
+.permalink { display:flex; justify-content:space-between; }
 
-.buttons { display:flex; gap:0.25rem; }
+.buttons { display:flex; gap:0.5rem; }
 .like { position:relative; }
 .like .like_button { position:absolute; height:100%; width:100%; }
 .like .like_button iframe { position:absolute; top:0; left:0; bottom:0; right:0; opacity:0; z-index:9; }
-.like-button-parent .like_button.liked + span { color:{color:accent}; }
+.like-button-parent .like_button.liked + span { color:#FF6347; }
 
-.tags { display:flex; flex-flow:row wrap; gap:0.5rem; margin:0.25rem 0 0; font-size:90%; }
+.tags { display:flex; flex-flow:row wrap; gap:0.5rem; font-size:90%; }
+{block:ifHashtag}.tags a:before { content:'#'; } {/block:ifHashtag}
 
-ol.notes { list-style-type:none; margin:1rem 0 0; padding:0; }
+ol.notes { margin:0; padding:0; list-style-type:none; }
 ol.notes li.note img { display:none; }
-ol.notes li.note { display:block; margin:5px 0; padding:0; }
+ol.notes li.note { margin:0; padding:0; }
 
 {CustomCSS}
 </style>
@@ -180,15 +174,8 @@ ol.notes li.note { display:block; margin:5px 0; padding:0; }
 
 <aside>
   <div id="sidebar">
-    {block:ifSidebarTitle}
-      <h1 class="title"><a href="/">{text:title}</a></h1>
-    {/block:ifSidebarTitle}
-    {block:ifSidebarImage}
       <img src="{image:sidebar}">
-    {block:ifSidebarImage}
-    {block:ifSidebarDesc}
       <div class="desc">{text:desc}</div>
-    {block:ifSidebarDesc}
     <ul class="links">
       <li><a href="/">home</a></li>
       <li><a href="/archive">archive</a></li>
@@ -198,12 +185,12 @@ ol.notes li.note { display:block; margin:5px 0; padding:0; }
       {block:SubmissionsEnabled}
         <li><a href="/submit">submit</a></li>
       {/block:SubmissionsEnabled}
-      {block:ifExtraLinks}
-        <li><a href="{text:link 1 url}">{text:link 1 name}</a>
-        <li><a href="{text:link 2 url}">{text:link 2 name}</a>
-        <li><a href="{text:link 3 url}">{text:link 3 name}</a>
-      {/block:ifExtraLinks}
-      <li><a href="{RSS}">rss</a>
+      <li><a href="{text:link 1 url}">{text:link 1 name}</a>
+      <li><a href="{text:link 2 url}">{text:link 2 name}</a>
+      <li><a href="{text:link 3 url}">{text:link 3 name}</a>
+      {block:ifRSSLink}
+        <li><a href="{RSS}">rss</a>
+      {/block:ifRSSLink}
     </ul>
     {block:Pagination}<div id="pag">
       {block:PreviousPage}
@@ -283,7 +270,9 @@ ol.notes li.note { display:block; margin:5px 0; padding:0; }
 </div>
 
 {block:Date}
-{block:ContentSource}<div class="source"><a href="{SourceURL}"><i class="ph ph-link-simple"></i> <b>source</b>: {SourceURL}</a></div>{/block:ContentSource}
+{block:ContentSource}<div class="source">
+  <a href="{SourceURL}"><i class="ph ph-link-simple"></i> <b>source</b>: {SourceURL}</a>
+</div>{/block:ContentSource}
 <footer>
   <div class="permalink">
     <div class="date">{block:PinnedPostLabel}<i class="ph ph-push-pin"></i>{/block:PinnedPostLabel} <a href="{Permalink}" title="{TimeAgo}">{Year}.{DayOfMonthWithZero}.{MonthNumberWithZero}</a></div>
@@ -299,9 +288,9 @@ ol.notes li.note { display:block; margin:5px 0; padding:0; }
       </div>
     </div>
   </div>
-  {block:ifTags}{block:HasTags}<div class="tags">
-    {block:Tags}<a href="{TagURL}">{block:ifHashtag}#{/block:ifHashtag}{Tag}</a> {/block:Tags}
-  </div>{/block:HasTags}{/block:ifTags}
+  {block:HasTags}<div class="tags">
+    {block:Tags}<a href="{TagURL}">{Tag}</a> {/block:Tags}
+  </div>{/block:HasTags}
 </footer>
 
 {block:PermalinkPage}
