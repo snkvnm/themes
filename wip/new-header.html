@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+
+<!--
+
+  THM#00:BASE by snake (terrybogard.gay)
+
+  CREATIVE COMMONS ZERO (PUBLIC DOMAIN DEDICATION)
+  creativecommons.org/publicdomain/zero/1.0
+
+  icons by phosphor icons <https://phosphoricons.com/>
+
+-->
+
+<title>{text:title}</title>
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+<link href="https://cdn.jsdelivr.net/gh/snkvnm/venom/venom.css" rel="stylesheet">
+<link href="https://assets.tumblr.com/fonts/favorit/stylesheet.css?v=1" rel="stylesheet" type="text/css" >
+<link href="https://fonts.googleapis.com/css2?family={text:font}&display=swap" rel="stylesheet"> 
+{NewPostStyles}
+<!--image options-->
+<meta name="image:background" content="">
+<meta name="image:sidebar" content="">
+<!--color options-->
+<meta name="color:background" content="#eee">
+<meta name="color:text" content="#111">
+<meta name="color:accent" content="#0000ff">
+<meta name="color:borders" content="#222">
+<!--selection options-->
+<meta name="select:bg size" content="auto">
+<meta name="select:bg size" content="cover">
+<meta name="select:bg size" content="contain">
+<meta name="select:bg repeat" content="repeat">
+<meta name="select:bg repeat" content="no-repeat">
+<meta name="select:sidebar align" content="left">
+<meta name="select:sidebar align" content="center">
+<meta name="select:sidebar align" content="right">
+<!-- boolean options -->
+<meta name="if:rss link">
+<meta name="if:hashtag">
+<!--text options-->
+<meta name="text:font" content="Favorit">
+<meta name="text:font size" content="1rem">
+<meta name="text:title" content="title">
+<meta name="text:desc" content="description">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<!-- phosphor icons -->
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+        
+<style>
+
+body {
+font-family:{text:font};
+font-size:{text:font size};
+color:{color:text};
+line-height:1.7;
+word-wrap:break-word;
+background:{color:background};
+background-image:url('{image:background}');
+background-size:{select:bg size};
+background-repeat:{select:bg repeat};
+background-attachment:fixed;
+background-position:center; }
+
+a { text-decoration:none; }
+aside a, .body a, .date a { text-decoration:dotted underline; }
+
+h1 { font-size:1.5rem; font-weight:900; }
+h2 { font-size:1.3rem; font-weight:700; }
+h3 { font-size:1.15rem; font-weight:600; }
+h4, h5, h6 { font-size:1rem; }
+
+blockquote {
+margin-left:0.5rem;
+padding-left:1rem;
+border-left:2px solid {color:text}; }
+
+main {
+display:flex;
+flex-flow:column nowrap;
+gap:50px;
+margin:auto;
+width:500px; }
+
+aside {
+max-width:100%;
+text-align:{select:sidebar align}; }
+
+#sidebar img {
+display:block;
+max-width:100%;
+margin:0 auto 1rem; }
+
+aside .desc, aside ul, aside li {
+display:inline;
+list-style-type:none;
+margin:0;
+padding:0; }
+
+aside li:after { content:' / '; }
+aside li:last-child:after { content:''; } 
+
+#posts {
+display:flex;
+flex-flow:row wrap;
+align-content:center;
+gap:50px;
+width:500px;
+margin:0 auto; }
+
+.post { width:100%; }
+
+.reblogger { line-height:1; }
+.reblog-avatar { width:16px; height:16px; vertical-align:middle; }
+.reblog-username { font-weight:bold; vertical-align:middle; }
+
+.source {
+margin:0.5rem;
+max-width:100%;
+font-size:85%;
+line-height:1;
+opacity:60%;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis; }
+
+footer { margin:0.5rem 0 0; }
+
+.permalink { display:flex; justify-content:space-between; }
+
+.buttons { display:flex; gap:0.5rem; }
+.like { position:relative; }
+.like .like_button { position:absolute; height:100%; width:100%; }
+.like .like_button iframe { position:absolute; top:0; left:0; bottom:0; right:0; opacity:0; z-index:9; }
+.like-button-parent .like_button.liked + span { color:#FF6347; }
+
+.tags { margin:5px 0 0; font-size:90%; opacity:80%; }
+.tags a { margin-right:5px; } 
+{block:ifHashtag}.tags a:before { content:'#'; } {/block:ifHashtag}
+
+ol.notes { margin:0; padding:0; list-style-type:none; }
+ol.notes li.note img { display:none; }
+ol.notes li.note { margin:0; padding:0; }
+
+#pag {
+display:flex;
+flex-flow:row nowrap;
+justify-content:space-evenly;
+margin:1rem 0; }
+
+{CustomCSS}
+</style>
+</head>
+<body>
+
+<main>
+
+<aside>
+  <div id="sidebar">
+      <img src="{image:sidebar}">
+      <div class="desc">{text:desc}</div>
+    <ul class="links"> — 
+      <li><a href="/">home</a></li>
+      <li><a href="/archive">archive</a></li>
+      {block:AskEnabled}
+        <li><a href="/ask">ask</a></li>
+      {/block:AskEnabled}
+      {block:SubmissionsEnabled}
+        <li><a href="/submit">submit</a></li>
+      {/block:SubmissionsEnabled}
+      {block:ifRSSLink}
+        <li><a href="{RSS}">rss</a>
+      {/block:ifRSSLink}
+    </ul>
+  </div>
+</aside>
+
+<section id="posts">{block:Posts}
+
+<article id="post-{PostID}" class="post">
+
+{block:Photo}
+  <div class="photo"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"></div>
+{/block:Photo}
+
+{block:Photoset}
+  <div class="photoset">{Photoset}</div> 
+{/block:Photoset}
+
+{block:Panorama}
+  <div class="photo"><img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"></div>
+{/block:Panorama}
+
+{block:Quote}
+  <div class="quote">"{Quote}"</div>
+  {block:Source}<div class="quotesource">-{Source}</div>{/block:Source}
+{/block:Quote}
+
+{block:Chat}<ul class="chat">
+  {block:Lines}
+    <li>{block:Label}{Label}{/block:Label} {Line}</li>
+  {/block:Lines}
+</ul>{/block:Chat}
+
+{block:Link}
+  <div class="link"><a href="{URL}">{Name}</a></div>
+{/block:Link}
+
+{block:Video}
+  <div class="video">{Video-500}</div>
+{/block:Video}
+
+{block:Audio}
+  <div class="audio">{AudioEmbed}</div>
+{/block:Audio}
+
+{block:Answer}
+  <div class="question"><b>{Asker}</b>: {Question}</div>
+  {block:Answerer}<div class="answer">{Answerer}: {Answer}</div>{/block:Answerer}
+  {block:NotReblog}<div class="answer">{Replies}</div>{/block:NotReblog}
+{/block:Answer}
+
+<div class="caption">
+  {block:Text}
+    {block:Title}<h2 class="title">{Title}</h2>{/block:Title}
+  {/block:Text}
+  {block:NotReblog}
+    {block:Caption}{Caption}{/block:Caption}
+    {block:Text}<div class="body">{Body}</div>{/block:Text}
+  {/block:NotReblog}
+  {block:RebloggedFrom}
+    {block:Reblogs}
+      <div class="reblogs">
+        <div class="reblogger source-head">
+          <a href="{Permalink}"><img class="reblog-avatar" src="{PortraitURL-64}" alt="{Username}'s avatar"></a>
+          <a href="{Permalink}" class="reblog-username">{Username}</a>
+        </div>
+        <div class="reblog body">{Body}</div>
+      </div>
+    {/block:Reblogs}
+  {/block:RebloggedFrom}
+</div>
+
+{block:Date}
+{block:ContentSource}<div class="source">
+  <a href="{SourceURL}"><i class="ph ph-link-simple"></i> <b>source</b>: {SourceURL}</a>
+</div>{/block:ContentSource}
+<footer>
+  <div class="permalink">
+    <div class="date">{block:PinnedPostLabel}<i class="ph ph-push-pin"></i>{/block:PinnedPostLabel} <a href="{Permalink}" title="{TimeAgo}">{Year}.{DayOfMonthWithZero}.{MonthNumberWithZero}</a></div>
+    <div class="buttons">
+      <div class="reblog">
+        <a href="{ReblogURL}"><i class="ph ph-repeat"></i></a>
+      </div>
+      <div class="like">
+        <div class="like-button-parent">
+          {LikeButton}
+          <span><i class="ph ph-heart"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  {block:HasTags}<div class="tags">
+    {block:Tags}<a href="{TagURL}">{Tag}</a> {/block:Tags}
+  </div>{/block:HasTags}
+</footer>
+
+{block:PermalinkPage}
+  {block:NoteCount}
+    {block:PostNotes}{PostNotes}{/block:PostNotes}
+  {/block:NoteCount}
+{/block:PermalinkPage}
+
+{/block:Date}
+
+{block:ContentSource} <!-- {SourceURL}{block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /> {/block:SourceLogo} {block:NoSourceLogo}{SourceLink}{/block:NoSourceLogo} --> {/block:ContentSource}
+
+</article>
+{/block:Posts}
+
+    {block:Pagination}<div id="pag">
+      {block:PreviousPage}
+        <a href="{PreviousPage}">← back</a>
+      {/block:PreviousPage}
+      {block:NextPage}
+        <a href="{NextPage}">next →</a>
+      {/block:NextPage}
+    </div>{/block:Pagination}
+
+</section>
+
+</main>
+</body>
+</html>
