@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+
+<!--
+
+  THM#01:XXX by snake (terrybogard.gay)
+
+  CREATIVE COMMONS ZERO (PUBLIC DOMAIN DEDICATION)
+  creativecommons.org/publicdomain/zero/1.0
+
+  icons by phosphor icons <https://phosphoricons.com/>
+
+-->
+
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+<title>{text:title}</title>
+{block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
+<link href="https://cdn.jsdelivr.net/gh/snkvnm/venom/venom.css" rel="stylesheet">
+<link href="https://assets.tumblr.com/fonts/favorit/stylesheet.css?v=1" rel="stylesheet" type="text/css" >
+<link href="https://fonts.googleapis.com/css2?family={text:font}&display=swap" rel="stylesheet"> 
+{NewPostStyles}
+{block:Options}
+<!--image options-->
+  <meta name="image:bg" content="">
+  <meta name="image:sidebar" content="">
+<!--color options-->
+  <meta name="color:bg" content="#eee">
+  <meta name="color:fg" content="#fff">
+  <meta name="color:borders" content="#aaa">
+  <meta name="color:text" content="#111">
+  <meta name="color:accent" content="#0000ff">
+<!--selection options-->
+  <meta name="select:bg size" content="auto">
+  <meta name="select:bg size" content="cover">
+  <meta name="select:bg size" content="contain">
+  <meta name="select:bg repeat" content="repeat">
+  <meta name="select:bg repeat" content="no-repeat">
+  <meta name="select:sidebar align" content="left">
+  <meta name="select:sidebar align" content="center">
+  <meta name="select:sidebar align" content="right">
+<!-- boolean options -->
+  <meta name="if:link underlines">
+  <meta name="if:extras">
+  <meta name="if:hashtag">
+  <meta name="if:tag comma">
+<!--text options-->
+  <meta name="text:font" content="Favorit">
+  <meta name="text:font size" content="1rem">
+  <meta name="text:avi roundness" content="100%">
+  <meta name="text:title" content="title">
+  <meta name="text:subtitle" content=" • subtitle">
+  <meta name="text:desc" content="description">
+  <meta name="text:footer icon" content="map-trifold">
+  <meta name="text:extra1 icon" content="map-trifold">
+  <meta name="text:extra1" content="extra 1">
+  <meta name="text:extra2 icon" content="fish">
+  <meta name="text:extra2" content="extra 2">
+  <meta name="text:extra3 icon" content="campfire">
+  <meta name="text:extra3" content="extra 3">
+{/block:Options}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<!-- phosphor icons -->
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<style>
+
+body {
+font-family:{text:font};
+font-size:{text:font size};
+color:{color:text};
+line-height:1.7;
+letter-spacing:1px;
+word-wrap:break-word;
+background-color:{color:bg};
+background-image:url('{image:bg}');
+background-size:{select:bg size};
+background-repeat:{select:bg repeat};
+background-attachment:fixed;
+background-position:center; }
+
+a { text-decoration:none; color:{color:accent}; transition:200ms; }
+a:hover { color:{color:text}; transition:200ms; }
+
+{block:ifLinkUnderlines}
+  .body a, .desc a { text-decoration:underline dotted; }
+{/block:ifLinkUnderlines}
+
+.title a, #pag a, footer a, .reblogger a, .source a
+{ text-decoration:none; color:{color:text}; }
+
+#pag a:hover, .reblogger a:hover, .date a:hover, .tags a:hover
+{ color:{color:accent}; }
+
+h1 { font-size:1.5rem; font-weight:900; }
+h2 { font-size:1.3rem; font-weight:700; }
+h3 { font-size:1.15rem; font-weight:600; }
+h4, h5, h6 { font-size:1rem; font-weight:700; }
+
+blockquote {
+margin-left:0.5rem;
+padding-left:1rem;
+border-left:2px solid {color:borders}; }
+
+/* main container ### */
+
+main {
+display:flex;
+flex-flow:row nowrap;
+justify-content:center;
+align-items:flex-start;
+gap:50px;
+margin:auto;
+width:100%; }
+
+/* sidebar ### */
+
+aside {
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+width:200px; }
+
+#sidebar {
+position:fixed;
+width:200px;
+text-align:{select:sidebar align}; }
+
+.avi img {
+display:block;
+margin:0 auto 1rem;
+border-radius:{text:avi roundness}; }
+
+aside .title { margin:0; }
+.name { font-size:120%; font-weight:700; color:{color:text}; }
+.subtitle { margin-left:5px; color:{color:text}; opacity:60%; }
+.title:empty, .name:empty, .subtitle:empty { display:none; }
+
+.desc { margin:0.5rem 0; font-size:90%; }
+
+.extra { margin:1rem 0.5rem; text-align:left; }
+.extra ul { margin:0; padding:0; list-style-type:none; }
+.extra ul li { margin:0; padding:0.25rem 0; opacity:80%; cursor:help; transition:200ms; }
+.extra ul li:hover { opacity:100%; transition:200ms; }
+.extra .ph { margin:5px 10px 5px 5px; vertical-align:-1px; color:{color:text}; }
+
+#pag {
+display:flex; 
+-flow:row nowrap;
+justify-content:space-evenly;
+margin:1rem 0 0;
+font-size:90%; }
+
+/* posts ### */
+
+section {
+display:flex;
+flex-flow:column wrap;
+gap:50px;
+margin:50px 0;
+width:540px; }
+
+article {
+width:100%; }
+
+/* post content ### */
+
+.reblogger { margin:1rem 0.25rem; line-height:1; }
+.reblog-avatar { width:16px; height:16px; vertical-align:middle; border-radius:{text:avi roundness}; }
+.reblog-username { margin-left:5px; font-weight:bold; vertical-align:middle; }
+
+.body { margin:0; }
+
+.npf_row { margin:0; }
+
+.source {
+margin:0.5rem 0;
+max-width:100%;
+font-size:85%;
+line-height:1.1;
+opacity:60%;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+transition:200ms; }
+
+.source:hover { opacity:100%; transition:200ms; }
+
+footer { margin:1rem 0 0; }
+
+.permalink { display:flex; justify-content:space-between; }
+.date { font-weight:700; }
+.date .ph { margin:2.5px; color:{color:accent}; vertical-align:-1px; }
+
+.buttons { display:flex; gap:0.5rem; }
+.like { position:relative; }
+.like .like_button { position:absolute; height:100%; width:100%; }
+.like .like_button iframe { position:absolute; top:0; left:0; bottom:0; right:0; opacity:0; z-index:9; }
+.like-button-parent .like_button.liked + span { color:#FF6347; }
+
+.tags { margin-top:5px; font-size:90%; }
+{block:ifHashtag}.tags a:before { content:'#'; opacity:50%; } {/block:ifHashtag}
+{block:ifTagComma}
+  .tags a:after { content:", "; opacity:75%; }
+  .tags a:last-child:after { content:""; }
+{/block:ifTagComma}
+
+ol.notes { margin:0; padding:0; list-style-type:none; }
+ol.notes li.note img { display:none; }
+ol.notes li.note { margin:0; padding:0; }
+
+{CustomCSS}
+</style>
+</head>
+<body>
+
+<main>
+
+<aside><div id="sidebar">
+  <div class="avi"><img src="{image:sidebar}"></div>
+  <div class="title">
+    <span class="name"><a href="/">{text:title}</a></span> <span class="subtitle">{text:subtitle}</span></div>
+  <div class="desc">{text:desc}</div>
+  {block:ifextras}<div class="extra"><ul>
+    <li><i class="ph ph-{text:extra1 icon}"></i> {text:extra1}</li>
+    <li><i class="ph ph-{text:extra2 icon}"></i> {text:extra2}</li>
+    <li><i class="ph ph-{text:extra3 icon}"></i> {text:extra3}</li>
+  </ul></div>{/block:ifextras}
+  {block:Pagination}<div id="pag">
+    {block:PreviousPage}
+      <a href="{PreviousPage}">← back</a>
+    {/block:PreviousPage}
+    {block:NextPage}
+      <a href="{NextPage}">next →</a>
+    {/block:NextPage}
+  </div>{/block:Pagination}
+</div></aside>
+
+<section id="posts">{block:Posts}
+
+<article id="post-{PostID}" class="post">
+
+{block:Photo}
+  <div class="photo"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"></div>
+{/block:Photo}
+
+{block:Photoset}
+  <div class="photoset">{Photoset}</div> 
+{/block:Photoset}
+
+{block:Panorama}
+  <div class="photo"><img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"></div>
+{/block:Panorama}
+
+{block:Quote}
+  <div class="quote">"{Quote}"</div>
+  {block:Source}<div class="quotesource">-{Source}</div>{/block:Source}
+{/block:Quote}
+
+{block:Chat}<ul class="chat">
+  {block:Lines}
+    <li>{block:Label}{Label}{/block:Label} {Line}</li>
+  {/block:Lines}
+</ul>{/block:Chat}
+
+{block:Link}
+  <div class="link"><a href="{URL}">{Name}</a></div>
+{/block:Link}
+
+{block:Video}
+  <div class="video">{Video-500}</div>
+{/block:Video}
+
+{block:Audio}
+  <div class="audio">{AudioEmbed}</div>
+{/block:Audio}
+
+{block:Answer}
+  <div class="question"><b>{Asker}</b>: {Question}</div>
+  {block:Answerer}<div class="answer">{Answerer}: {Answer}</div>{/block:Answerer}
+  {block:NotReblog}<div class="answer">{Replies}</div>{/block:NotReblog}
+{/block:Answer}
+
+<div class="caption">
+  {block:Text}
+    {block:Title}<h2 class="title">{Title}</h2>{/block:Title}
+  {/block:Text}
+  {block:NotReblog}
+    {block:Caption}{Caption}{/block:Caption}
+    {block:Text}<div class="body">{Body}</div>{/block:Text}
+  {/block:NotReblog}
+  {block:RebloggedFrom}
+    {block:Reblogs}
+      <div class="reblogs">
+        <div class="reblogger">
+          <a href="{Permalink}">
+            <img class="reblog-avatar" src="{PortraitURL-64}" alt="{Username}'s avatar">
+            <span class="reblog-username">{Username}
+          </a>
+        </div>
+        <div class="reblog body">{Body}</div>
+      </div>
+    {/block:Reblogs}
+  {/block:RebloggedFrom}
+</div>
+
+{block:Date}
+{block:ContentSource}<div class="source">
+  <a href="{SourceURL}"><b>SRC</b>: {SourceTitle}</a>
+</div>{/block:ContentSource}
+<footer>
+  <div class="permalink">
+    {block:PinnedPostLabel}<span class="pinned"><i class="ph ph-push-pin"></i></span>{/block:PinnedPostLabel}
+    <span class="date"><a href="{Permalink}" title="{TimeAgo}"><i class="ph ph-{text:footer icon}"></i> {Year}.{DayOfMonthWithZero}.{MonthNumberWithZero}</a></span>
+    <div class="buttons">
+      <div class="reblog">
+        <a href="{ReblogURL}"><i class="ph ph-arrows-clockwise"></i></a>
+      </div>
+      <div class="like">
+        <div class="like-button-parent">
+          {LikeButton}
+          <span><i class="ph ph-heart"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  {block:HasTags}<div class="tags">
+    {block:Tags}<a href="{TagURL}">{Tag}</a> {/block:Tags}
+  </div>{/block:HasTags}
+</footer>
+
+{block:PermalinkPage}
+  {block:NoteCount}
+    {block:PostNotes}{PostNotes}{/block:PostNotes}
+  {/block:NoteCount}
+{/block:PermalinkPage}
+
+{/block:Date}
+
+{block:ContentSource} <!-- {SourceURL}{block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /> {/block:SourceLogo} {block:NoSourceLogo}{SourceLink}{/block:NoSourceLogo} --> {/block:ContentSource}
+
+</article>
+{/block:Posts}
+
+</section>
+
+</main>
+</body>
+</html>
